@@ -15,10 +15,8 @@ DetailMovieModel _$DetailMovieModelFromJson(Map<String, dynamic> json) =>
       vote_average: (json['vote_average'] as num).toDouble(),
       overview: json['overview'] as String,
       casts: CastsModel.fromJson(json['casts'] as Map<String, dynamic>),
-      reviews: json['reviews'] == null
-          ? null
-          : ResultsReviewModel.fromJson(
-              json['reviews'] as Map<String, dynamic>),
+      reviews:
+          ResultsReviewModel.fromJson(json['reviews'] as Map<String, dynamic>),
       genres: (json['genres'] as List<dynamic>)
           .map((e) => GenreModel.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -38,7 +36,7 @@ Map<String, dynamic> _$DetailMovieModelToJson(DetailMovieModel instance) =>
       'vote_average': instance.vote_average,
       'overview': instance.overview,
       'casts': instance.casts.toJson(),
-      'reviews': instance.reviews?.toJson(),
+      'reviews': instance.reviews.toJson(),
       'genres': instance.genres.map((e) => e.toJson()).toList(),
       'spoken_languages':
           instance.spoken_languages.map((e) => e.toJson()).toList(),

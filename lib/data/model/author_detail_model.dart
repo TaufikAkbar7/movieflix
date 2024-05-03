@@ -6,7 +6,7 @@ part 'author_detail_model.g.dart';
 class AuthorDetailModel {
   final String name;
   final String username;
-  final int rating;
+  final int? rating;
 
   AuthorDetailModel(
       {required this.name, required this.username, required this.rating});

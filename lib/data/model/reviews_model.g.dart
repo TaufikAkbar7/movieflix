@@ -7,7 +7,7 @@ part of 'reviews_model.dart';
 // **************************************************************************
 
 ReviewsModel _$ReviewsModelFromJson(Map<String, dynamic> json) => ReviewsModel(
-      id: (json['id'] as num).toInt(),
+      id: json['id'] as String,
       author: json['author'] as String,
       updated_at: json['updated_at'] as String,
       content: json['content'] as String,

@@ -10,7 +10,7 @@ AuthorDetailModel _$AuthorDetailModelFromJson(Map<String, dynamic> json) =>
     AuthorDetailModel(
       name: json['name'] as String,
       username: json['username'] as String,
-      rating: (json['rating'] as num).toInt(),
+      rating: (json['rating'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$AuthorDetailModelToJson(AuthorDetailModel instance) =>

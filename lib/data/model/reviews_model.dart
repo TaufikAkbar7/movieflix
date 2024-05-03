@@ -5,7 +5,7 @@ part 'reviews_model.g.dart';
 
 @JsonSerializable(explicitToJson: true)
 class ReviewsModel {
-  final int id;
+  final String id;
   final String author;
   final String updated_at;
   final String content;

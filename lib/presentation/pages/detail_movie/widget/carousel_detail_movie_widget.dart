@@ -104,9 +104,9 @@ class _CarouselDetailMovieWidget extends State<CarouselDetailMovieWidget> {
                               children: [
                                 const Icon(Icons.star,
                                     color: Colors.yellow, size: 18.0),
-                                SizedBox(width: 5),
+                                const SizedBox(width: 5),
                                 Text(
-                                  '${getRating.toStringAsFixed(1)}',
+                                  getRating.toStringAsFixed(1),
                                   style: const TextStyle(
                                       color: Colors.white, fontSize: 14.0),
                                 )

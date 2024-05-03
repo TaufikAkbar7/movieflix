@@ -1,11 +1,19 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:movie_app/data/model/language_model.dart';
+import 'package:movie_app/presentation/pages/casts/ui/casts_screen.dart';
+import 'package:movie_app/routes/router.dart';
 
 class CastDetailMovieWidget extends StatelessWidget {
   final List<Map<String, String>> casts;
   final List<LanguageModel> language;
+  final int movieId;
+
   const CastDetailMovieWidget(
-      {super.key, required this.casts, required this.language});
+      {super.key,
+      required this.casts,
+      required this.language,
+      required this.movieId});
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +36,8 @@ class CastDetailMovieWidget extends StatelessWidget {
                     color: Colors.white,
                     size: 36.0,
                   ),
-                  onPressed: () => {})
+                  onPressed: () => context.router
+                      .push(CastRoute(movieId: movieId, casts: casts)))
             ],
           ),
           const SizedBox(height: 10),

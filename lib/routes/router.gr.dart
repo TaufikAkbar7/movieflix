@@ -15,6 +15,17 @@ abstract class _$AppRouter extends RootStackRouter {
 
   @override
   final Map<String, PageFactory> pagesMap = {
+    CastRoute.name: (routeData) {
+      final args = routeData.argsAs<CastRouteArgs>();
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: CastScreen(
+          key: args.key,
+          movieId: args.movieId,
+          casts: args.casts,
+        ),
+      );
+    },
     DetailMovieRoute.name: (routeData) {
       final args = routeData.argsAs<DetailMovieRouteArgs>();
       return AutoRoutePage<dynamic>(
@@ -39,6 +50,48 @@ abstract class _$AppRouter extends RootStackRouter {
       );
     },
   };
+}
+
+/// generated route for
+/// [CastScreen]
+class CastRoute extends PageRouteInfo<CastRouteArgs> {
+  CastRoute({
+    Key? key,
+    required int movieId,
+    required List<Map<String, String>> casts,
+    List<PageRouteInfo>? children,
+  }) : super(
+          CastRoute.name,
+          args: CastRouteArgs(
+            key: key,
+            movieId: movieId,
+            casts: casts,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'CastRoute';
+
+  static const PageInfo<CastRouteArgs> page = PageInfo<CastRouteArgs>(name);
+}
+
+class CastRouteArgs {
+  const CastRouteArgs({
+    this.key,
+    required this.movieId,
+    required this.casts,
+  });
+
+  final Key? key;
+
+  final int movieId;
+
+  final List<Map<String, String>> casts;
+
+  @override
+  String toString() {
+    return 'CastRouteArgs{key: $key, movieId: $movieId, casts: $casts}';
+  }
 }
 
 /// generated route for

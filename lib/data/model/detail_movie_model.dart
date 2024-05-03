@@ -17,7 +17,7 @@ class DetailMovieModel {
   final double vote_average;
   final String overview;
   final CastsModel casts;
-  final ResultsReviewModel? reviews;
+  final ResultsReviewModel reviews;
   final List<GenreModel> genres;
   final List<LanguageModel> spoken_languages;
   final ResultsSimilarModel similar;
