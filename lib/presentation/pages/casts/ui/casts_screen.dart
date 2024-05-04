@@ -21,7 +21,7 @@ class _CastScreen extends State<CastScreen> {
 
   @override
   void initState() {
-    _castsBloc.add(GetDetailMovieCasts(movieId: widget.movieId));
+    // _castsBloc.add(GetDetailMovieCasts(movieId: widget.movieId));
     super.initState();
   }
 

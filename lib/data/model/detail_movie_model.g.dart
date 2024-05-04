@@ -25,6 +25,8 @@ DetailMovieModel _$DetailMovieModelFromJson(Map<String, dynamic> json) =>
           .toList(),
       similar:
           ResultsSimilarModel.fromJson(json['similar'] as Map<String, dynamic>),
+      videos:
+          ResultsTrailerModel.fromJson(json['videos'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$DetailMovieModelToJson(DetailMovieModel instance) =>
@@ -41,4 +43,5 @@ Map<String, dynamic> _$DetailMovieModelToJson(DetailMovieModel instance) =>
       'spoken_languages':
           instance.spoken_languages.map((e) => e.toJson()).toList(),
       'similar': instance.similar.toJson(),
+      'videos': instance.videos.toJson(),
     };

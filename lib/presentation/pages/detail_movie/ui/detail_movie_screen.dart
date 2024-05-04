@@ -1,13 +1,14 @@
 import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movie_app/bloc/detail_movie/bloc/detail_movie_bloc.dart';
+import 'package:movie_app/bloc/detail_movie/detail_movie_bloc.dart';
 import 'package:movie_app/presentation/pages/detail_movie/widget/button_detail_movie_widget.dart';
 import 'package:movie_app/presentation/pages/detail_movie/widget/carousel_detail_movie_widget.dart';
 import 'package:movie_app/presentation/pages/detail_movie/widget/cast_detail_movie_widget.dart';
 import 'package:movie_app/presentation/pages/detail_movie/widget/content_detail_movie_widget.dart';
 import 'package:movie_app/presentation/pages/detail_movie/widget/reviews_detail_movie_widget.dart';
 import 'package:movie_app/presentation/pages/home/widget/list_movie_widget.dart';
+import 'package:movie_app/routes/router.dart';
 
 @RoutePage()
 class DetailMovieScreen extends StatefulWidget {
@@ -66,7 +67,8 @@ class _DetailMovieScreen extends State<DetailMovieScreen> {
                                 data.poster_path
                               ], rating: data.vote_average),
                               const SizedBox(height: 10),
-                              const ButtonDetailMovieWidget(),
+                              ButtonDetailMovieWidget(
+                                  trailers: data.videos.results),
                               ContentDetailMovieWidget(
                                   genres: data.genres,
                                   overview: data.overview,
@@ -76,11 +78,14 @@ class _DetailMovieScreen extends State<DetailMovieScreen> {
                                   casts: state.castsMovie,
                                   language: data.spoken_languages),
                               ReviewsDetailMovieWidget(
+                                  movieId: getMovieId,
                                   reviews: data.reviews.results),
                               Padding(
                                 padding: const EdgeInsets.symmetric(
                                     horizontal: 10.0),
                                 child: ListMovieWidget(
+                                    destinationRoute:
+                                        SimilarRoute(movieId: getMovieId),
                                     data: data.similar.results as List<dynamic>,
                                     title: 'More like this'),
                               )

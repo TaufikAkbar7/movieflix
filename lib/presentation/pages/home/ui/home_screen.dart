@@ -5,6 +5,7 @@ import 'package:movie_app/bloc/movie/movie_bloc.dart';
 import 'package:movie_app/bloc/tv_series/tv_series_bloc.dart';
 import 'package:movie_app/presentation/pages/home/widget/carousel_widget.dart';
 import 'package:movie_app/presentation/pages/home/widget/list_movie_widget.dart';
+import 'package:movie_app/routes/router.dart';
 
 @RoutePage()
 class HomeScreen extends StatefulWidget {
@@ -60,6 +61,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         BlocBuilder<MovieBloc, MovieState>(
                           builder: (context, state) {
                             return ListMovieWidget(
+                              destinationRoute: const HomeRoute(),
                               data: state.movieList,
                               title: 'Popular Movies',
                             );
@@ -68,6 +70,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         BlocBuilder<TvSeriesBloc, TvSeriesState>(
                           builder: (context, state) {
                             return ListMovieWidget(
+                              destinationRoute: const HomeRoute(),
                               data: state.tvSeriesList,
                               title: 'Popular Tv Series',
                               isTvSeries: true,

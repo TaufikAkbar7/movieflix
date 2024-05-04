@@ -15,7 +15,6 @@ class CastsBloc extends Bloc<CastsEvent, CastsState> {
         emit(CastsLoading());
         final getData = await movieService.getDetailMovieCredits(event.movieId);
         Map<String, dynamic> data = getData;
-        print(data);
         CastsModel results = CastsModel.fromJson(data);
 
         emit(CastsSuccess(casts: results));

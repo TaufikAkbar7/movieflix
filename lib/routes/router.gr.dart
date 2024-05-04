@@ -49,6 +49,26 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const LoginScreen(),
       );
     },
+    ReviewRoute.name: (routeData) {
+      final args = routeData.argsAs<ReviewRouteArgs>();
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: ReviewScreen(
+          key: args.key,
+          movieId: args.movieId,
+        ),
+      );
+    },
+    SimilarRoute.name: (routeData) {
+      final args = routeData.argsAs<SimilarRouteArgs>();
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: SimilarScreen(
+          key: args.key,
+          movieId: args.movieId,
+        ),
+      );
+    },
   };
 }
 
@@ -163,4 +183,79 @@ class LoginRoute extends PageRouteInfo<void> {
   static const String name = 'LoginRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [ReviewScreen]
+class ReviewRoute extends PageRouteInfo<ReviewRouteArgs> {
+  ReviewRoute({
+    Key? key,
+    required int movieId,
+    List<PageRouteInfo>? children,
+  }) : super(
+          ReviewRoute.name,
+          args: ReviewRouteArgs(
+            key: key,
+            movieId: movieId,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'ReviewRoute';
+
+  static const PageInfo<ReviewRouteArgs> page = PageInfo<ReviewRouteArgs>(name);
+}
+
+class ReviewRouteArgs {
+  const ReviewRouteArgs({
+    this.key,
+    required this.movieId,
+  });
+
+  final Key? key;
+
+  final int movieId;
+
+  @override
+  String toString() {
+    return 'ReviewRouteArgs{key: $key, movieId: $movieId}';
+  }
+}
+
+/// generated route for
+/// [SimilarScreen]
+class SimilarRoute extends PageRouteInfo<SimilarRouteArgs> {
+  SimilarRoute({
+    Key? key,
+    required int movieId,
+    List<PageRouteInfo>? children,
+  }) : super(
+          SimilarRoute.name,
+          args: SimilarRouteArgs(
+            key: key,
+            movieId: movieId,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'SimilarRoute';
+
+  static const PageInfo<SimilarRouteArgs> page =
+      PageInfo<SimilarRouteArgs>(name);
+}
+
+class SimilarRouteArgs {
+  const SimilarRouteArgs({
+    this.key,
+    required this.movieId,
+  });
+
+  final Key? key;
+
+  final int movieId;
+
+  @override
+  String toString() {
+    return 'SimilarRouteArgs{key: $key, movieId: $movieId}';
+  }
 }

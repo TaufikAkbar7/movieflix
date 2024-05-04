@@ -63,7 +63,7 @@ class MovieService {
     final dio = DioClient().dio;
     try {
       final response = await dio.get(
-          '/movie/$movieId?language=en-US&append_to_response=casts,similar,reviews');
+          '/movie/$movieId?language=en-US&append_to_response=casts,similar,reviews,videos');
       return response.data;
     } on DioException catch (err) {
       debugPrint('debug: ${err.requestOptions}');
@@ -78,7 +78,7 @@ class MovieService {
     final dio = DioClient().dio;
     try {
       final response = await dio.get(
-          '/tv/$tvSeriesId?language=en-US&append_to_response=casts,similar,release_dates,reviews');
+          '/tv/$tvSeriesId?language=en-US&append_to_response=casts,similar,release_dates,reviews,videos');
       return response.data;
     } on DioException catch (err) {
       debugPrint('debug: ${err.requestOptions}');
@@ -93,6 +93,36 @@ class MovieService {
     final dio = DioClient().dio;
     try {
       final response = await dio.get('/movie/$id/credits?language=en-US');
+      return response.data;
+    } on DioException catch (err) {
+      debugPrint('debug: ${err.requestOptions}');
+      debugPrint('debug: ${err.message}');
+    } catch (e) {
+      if (kDebugMode) print(e);
+      throw e.toString();
+    }
+  }
+
+  Future<dynamic> getDetailMovieReviews(int id) async {
+    final dio = DioClient().dio;
+    try {
+      final response =
+          await dio.get('/movie/$id/reviews?language=en-US&page=1');
+      return response.data;
+    } on DioException catch (err) {
+      debugPrint('debug: ${err.requestOptions}');
+      debugPrint('debug: ${err.message}');
+    } catch (e) {
+      if (kDebugMode) print(e);
+      throw e.toString();
+    }
+  }
+
+  Future<dynamic> getDetailMovieSimilar(int id) async {
+    final dio = DioClient().dio;
+    try {
+      final response =
+          await dio.get('/movie/$id/similar?language=en-US&page=1');
       return response.data;
     } on DioException catch (err) {
       debugPrint('debug: ${err.requestOptions}');

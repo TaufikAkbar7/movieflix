@@ -1,7 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:movie_app/data/model/language_model.dart';
-import 'package:movie_app/presentation/pages/casts/ui/casts_screen.dart';
 import 'package:movie_app/routes/router.dart';
 
 class CastDetailMovieWidget extends StatelessWidget {

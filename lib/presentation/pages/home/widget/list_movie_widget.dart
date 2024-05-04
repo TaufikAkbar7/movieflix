@@ -6,12 +6,14 @@ class ListMovieWidget<T> extends StatelessWidget {
   final List<dynamic> data;
   final String title;
   final bool isTvSeries;
+  final PageRouteInfo<dynamic> destinationRoute;
 
   const ListMovieWidget(
       {super.key,
       required this.data,
       required this.title,
-      this.isTvSeries = false});
+      this.isTvSeries = false,
+      required this.destinationRoute});
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +34,7 @@ class ListMovieWidget<T> extends StatelessWidget {
                   color: Colors.white,
                   size: 36.0,
                 ),
-                onPressed: () => {})
+                onPressed: () => context.router.push(destinationRoute))
           ],
         ),
         const SizedBox(height: 10),
