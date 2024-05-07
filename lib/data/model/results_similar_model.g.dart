@@ -11,10 +11,12 @@ ResultsSimilarModel _$ResultsSimilarModelFromJson(Map<String, dynamic> json) =>
       results: (json['results'] as List<dynamic>)
           .map((e) => SimilarModel.fromJson(e as Map<String, dynamic>))
           .toList(),
+      page: (json['page'] as num).toInt(),
     );
 
 Map<String, dynamic> _$ResultsSimilarModelToJson(
         ResultsSimilarModel instance) =>
     <String, dynamic>{
+      'page': instance.page,
       'results': instance.results.map((e) => e.toJson()).toList(),
     };

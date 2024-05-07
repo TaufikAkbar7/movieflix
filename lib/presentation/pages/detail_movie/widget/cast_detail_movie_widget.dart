@@ -1,18 +1,21 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:movie_app/data/model/language_model.dart';
+import 'package:movie_app/presentation/constants/app_constants.dart';
 import 'package:movie_app/routes/router.dart';
 
 class CastDetailMovieWidget extends StatelessWidget {
   final List<Map<String, String>> casts;
   final List<LanguageModel> language;
   final int movieId;
+  final bool isTvSeries;
 
   const CastDetailMovieWidget(
       {super.key,
       required this.casts,
       required this.language,
-      required this.movieId});
+      required this.movieId,
+      required this.isTvSeries});
 
   @override
   Widget build(BuildContext context) {
@@ -34,8 +37,8 @@ class CastDetailMovieWidget extends StatelessWidget {
                     color: Colors.white,
                     size: 36.0,
                   ),
-                  onPressed: () => context.router
-                      .push(CastRoute(movieId: movieId, casts: casts)))
+                  onPressed: () => context.router.push(CastRoute(
+                      movieId: movieId, casts: casts, isTvSeries: isTvSeries)))
             ],
           ),
           const SizedBox(height: 10),
@@ -53,8 +56,8 @@ class CastDetailMovieWidget extends StatelessWidget {
                     CircleAvatar(
                       radius: 50.0,
                       backgroundImage: NetworkImage(casts[index]['image'] != ''
-                          ? "https://image.tmdb.org/t/p/w154/${casts[index]['image']}"
-                          : "https://www.gravatar.com/avatar/3b3be63a4c2a439b013787725dfce802?d=identicon"),
+                          ? "${ImageConstant.tmbdImageCard}/${casts[index]['image']}"
+                          : ImageConstant.defaultImage),
                       backgroundColor: Colors.transparent,
                     ),
                     const SizedBox(height: 2.0),

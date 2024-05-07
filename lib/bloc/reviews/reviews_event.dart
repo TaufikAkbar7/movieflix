@@ -9,5 +9,7 @@ sealed class ReviewsEvent extends Equatable {
 
 class GetDetailMovieReviews extends ReviewsEvent {
   final int movieId;
-  const GetDetailMovieReviews({required this.movieId});
+  final bool isTvSeries;
+  const GetDetailMovieReviews(
+      {required this.movieId, required this.isTvSeries});
 }

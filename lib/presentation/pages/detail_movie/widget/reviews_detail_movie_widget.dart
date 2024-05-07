@@ -8,9 +8,13 @@ import 'package:movie_app/routes/router.dart';
 class ReviewsDetailMovieWidget extends StatelessWidget {
   final List<ReviewsModel> reviews;
   final int movieId;
+  final bool isTvSeries;
 
   const ReviewsDetailMovieWidget(
-      {super.key, required this.reviews, required this.movieId});
+      {super.key,
+      required this.reviews,
+      required this.movieId,
+      required this.isTvSeries});
 
   @override
   Widget build(BuildContext context) {
@@ -28,8 +32,8 @@ class ReviewsDetailMovieWidget extends StatelessWidget {
                         fontWeight: FontWeight.w600,
                         color: Colors.white)),
                 TextButton(
-                    onPressed: () =>
-                        context.router.push(ReviewRoute(movieId: movieId)),
+                    onPressed: () => context.router.push(
+                        ReviewRoute(movieId: movieId, isTvSeries: isTvSeries)),
                     child: const Text('All reviews',
                         style: TextStyle(color: Colors.white)))
               ],

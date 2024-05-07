@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:movie_app/presentation/constants/app_constants.dart';
 
 class CarouselDetailMovieWidget extends StatefulWidget {
   final List<String> poster_images;
@@ -54,7 +55,7 @@ class _CarouselDetailMovieWidget extends State<CarouselDetailMovieWidget> {
               alignment: Alignment.bottomLeft,
               children: [
                 Image.network(
-                  'https://image.tmdb.org/t/p/w1280/${getPoster[pagePosition]}',
+                  ImageConstant.tmbdImageCarousel + getPoster[pagePosition],
                   fit: BoxFit.cover,
                   width: double.infinity,
                   height: double.infinity,

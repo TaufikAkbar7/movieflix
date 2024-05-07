@@ -89,10 +89,10 @@ class MovieService {
     }
   }
 
-  Future<dynamic> getDetailMovieCredits(int id) async {
+  Future<dynamic> getDetailMovieCredits({int id = 0, prefix = 'movie'}) async {
     final dio = DioClient().dio;
     try {
-      final response = await dio.get('/movie/$id/credits?language=en-US');
+      final response = await dio.get('/$prefix/$id/credits?language=en-US');
       return response.data;
     } on DioException catch (err) {
       debugPrint('debug: ${err.requestOptions}');
@@ -103,11 +103,12 @@ class MovieService {
     }
   }
 
-  Future<dynamic> getDetailMovieReviews(int id) async {
+  Future<dynamic> getDetailMovieReviews(
+      {int id = 0, int page = 1, prefix = 'movie'}) async {
     final dio = DioClient().dio;
     try {
       final response =
-          await dio.get('/movie/$id/reviews?language=en-US&page=1');
+          await dio.get('/$prefix/$id/reviews?language=en-US&page=$page');
       return response.data;
     } on DioException catch (err) {
       debugPrint('debug: ${err.requestOptions}');
@@ -118,11 +119,12 @@ class MovieService {
     }
   }
 
-  Future<dynamic> getDetailMovieSimilar(int id) async {
+  Future<dynamic> getDetailMovieSimilar(
+      {int id = 0, int page = 1, prefix = 'movie'}) async {
     final dio = DioClient().dio;
     try {
       final response =
-          await dio.get('/movie/$id/similar?language=en-US&page=1');
+          await dio.get('/$prefix/$id/similar?language=en-US&page=$page');
       return response.data;
     } on DioException catch (err) {
       debugPrint('debug: ${err.requestOptions}');

@@ -11,9 +11,11 @@ class CastsBloc extends Bloc<CastsEvent, CastsState> {
 
   CastsBloc() : super(CastsInitial()) {
     on<GetDetailMovieCasts>((event, emit) async {
+      final path = event.isTvSeries ? 'tv' : 'movie';
       try {
         emit(CastsLoading());
-        final getData = await movieService.getDetailMovieCredits(event.movieId);
+        final getData = await movieService.getDetailMovieCredits(
+            id: event.movieId, prefix: path);
         Map<String, dynamic> data = getData;
         CastsModel results = CastsModel.fromJson(data);
 

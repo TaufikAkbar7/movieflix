@@ -10,5 +10,6 @@ sealed class DetailMovieEvent extends Equatable {
 class GetDetailMovie extends DetailMovieEvent {
   final int movieId;
   final bool isTvSeries;
+
   const GetDetailMovie({required this.movieId, required this.isTvSeries});
 }

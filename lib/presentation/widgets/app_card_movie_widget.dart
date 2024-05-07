@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:movie_app/presentation/constants/app_constants.dart';
 import 'package:movie_app/routes/router.dart';
 
 class AppCardMovieWidget extends StatelessWidget {
@@ -22,8 +23,9 @@ class AppCardMovieWidget extends StatelessWidget {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(12.0),
             image: DecorationImage(
-              image: NetworkImage(
-                  "https://image.tmdb.org/t/p/w154${data.poster_path}"),
+              image: NetworkImage(data.poster_path != null
+                  ? "${ImageConstant.tmbdImageCard}/${data.poster_path}"
+                  : ImageConstant.defaultImage),
               fit: BoxFit.cover,
             ),
           ),

@@ -9,5 +9,6 @@ sealed class CastsEvent extends Equatable {
 
 class GetDetailMovieCasts extends CastsEvent {
   final int movieId;
-  const GetDetailMovieCasts({required this.movieId});
+  final bool isTvSeries;
+  const GetDetailMovieCasts({required this.movieId, required this.isTvSeries});
 }

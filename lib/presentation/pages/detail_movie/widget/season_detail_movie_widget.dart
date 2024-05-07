@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movie_app/data/model/tv_series_season_model.dart';
+import 'package:movie_app/presentation/constants/app_constants.dart';
 
 class SeasonDetailMovieWidget extends StatelessWidget {
   final List<TvSeriesSeasonModel> seasons;
@@ -37,8 +38,9 @@ class SeasonDetailMovieWidget extends StatelessWidget {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(12.0),
                     image: DecorationImage(
-                      image: NetworkImage(
-                          "https://image.tmdb.org/t/p/w154${seasons[index].poster_path}"),
+                      image: NetworkImage(seasons[index].poster_path != null
+                          ? '${ImageConstant.tmbdImageCard}${seasons[index].poster_path}'
+                          : ImageConstant.defaultImage),
                       fit: BoxFit.cover,
                     ),
                   ),

@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:movie_app/presentation/constants/app_constants.dart';
 import 'package:movie_app/routes/router.dart';
 
 class ListMovieWidget<T> extends StatelessWidget {
@@ -59,8 +60,8 @@ class ListMovieWidget<T> extends StatelessWidget {
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(12.0),
                         image: DecorationImage(
-                          image: NetworkImage(
-                              "https://image.tmdb.org/t/p/w154${data[index].poster_path}"),
+                          image: NetworkImage(ImageConstant.tmbdImageCard +
+                              data[index].poster_path),
                           fit: BoxFit.cover,
                         ),
                       ),

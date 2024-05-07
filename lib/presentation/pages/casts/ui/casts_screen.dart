@@ -4,13 +4,19 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_app/bloc/casts/casts_bloc.dart';
 import 'package:movie_app/presentation/pages/casts/widget/content_cast_widget.dart';
+import 'package:movie_app/presentation/widgets/widget.dart';
 
 @RoutePage()
 class CastScreen extends StatefulWidget {
   final int movieId;
+  final bool isTvSeries;
   final List<Map<String, String>> casts;
 
-  const CastScreen({super.key, required this.movieId, required this.casts});
+  const CastScreen(
+      {super.key,
+      required this.movieId,
+      required this.casts,
+      required this.isTvSeries});
 
   @override
   State<CastScreen> createState() => _CastScreen();
@@ -21,7 +27,6 @@ class _CastScreen extends State<CastScreen> {
 
   @override
   void initState() {
-    // _castsBloc.add(GetDetailMovieCasts(movieId: widget.movieId));
     super.initState();
   }
 
@@ -42,27 +47,20 @@ class _CastScreen extends State<CastScreen> {
       ),
       body: BlocProvider(
           create: (context) => _castsBloc,
-          child: RefreshIndicator(
-            onRefresh: () async =>
-                _castsBloc.add(GetDetailMovieCasts(movieId: widget.movieId)),
+          child: AppContainerWidget(
+            onRefresh: () async => _castsBloc.add(GetDetailMovieCasts(
+                movieId: widget.movieId, isTvSeries: widget.isTvSeries)),
             child:
                 BlocBuilder<CastsBloc, CastsState>(builder: (context, state) {
-              if (state is CastsLoading) {
-                return const Center(
-                  child: CircularProgressIndicator(
-                    color: Colors.white,
-                    backgroundColor: Colors.blueGrey,
-                  ),
-                );
-              } else if (state is CastsSuccess) {
-                // return result hit api
-                return ContentCastWidget(data: state.castsMovie);
-              } else if (state is CastsError) {
-                return Text(state.e,
-                    style: const TextStyle(color: Colors.white));
-              } else {
-                // return result props
-                return ContentCastWidget(data: widget.casts);
+              switch (state) {
+                case CastsLoading():
+                  return const AppLoadingWidget();
+                case CastsSuccess():
+                  return ContentCastWidget(data: state.castsMovie);
+                case CastsError():
+                  return AppErrorMessageWidget(errorMessage: state.e);
+                default:
+                  return ContentCastWidget(data: widget.casts);
               }
             }),
           )),

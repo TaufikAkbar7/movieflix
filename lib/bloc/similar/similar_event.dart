@@ -9,5 +9,11 @@ sealed class SimilarEvent extends Equatable {
 
 class GetDetailMovieSimilar extends SimilarEvent {
   final int movieId;
-  const GetDetailMovieSimilar({required this.movieId});
+  final int currentPage;
+  final bool isTvSeries;
+
+  const GetDetailMovieSimilar(
+      {required this.movieId,
+      required this.currentPage,
+      required this.isTvSeries});
 }

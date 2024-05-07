@@ -19,6 +19,7 @@ dependencies:
   auto_route: ^7.9.2
   flutter_dotenv: ^5.1.0
   youtube_player_flutter: ^8.1.2
+  bloc_concurrency: ^0.2.5
 
 dev_dependencies:
   flutter_test:

@@ -1,4 +1,5 @@
 import 'package:auto_route/annotations.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_app/bloc/detail_movie/detail_movie_bloc.dart';
@@ -90,14 +91,17 @@ class _DetailMovieScreen extends State<DetailMovieScreen> {
                                     CastDetailMovieWidget(
                                         movieId: getMovieId,
                                         casts: state.castsMovie,
-                                        language: data.spoken_languages),
+                                        language: data.spoken_languages,
+                                        isTvSeries: getIsTvSeries),
                                     const SizedBox(height: 10.0),
                                     ReviewsDetailMovieWidget(
                                         movieId: getMovieId,
-                                        reviews: data.reviews.results),
+                                        reviews: data.reviews.results,
+                                        isTvSeries: getIsTvSeries),
                                     ListMovieWidget(
-                                        destinationRoute:
-                                            SimilarRoute(movieId: getMovieId),
+                                        destinationRoute: SimilarRoute(
+                                            movieId: getMovieId,
+                                            isTvSeries: getIsTvSeries),
                                         data: data.similar.results
                                             as List<dynamic>,
                                         title: 'More like this')
@@ -123,9 +127,9 @@ class _DetailMovieScreen extends State<DetailMovieScreen> {
                                     data.poster_path
                                   ],
                                   rating: data.vote_average,
-                                  year: formatYear(data.first_air_date,
-                                      data.last_air_date ?? ''),
-                                  totalEpisodes: data.number_of_episodes ?? 0),
+                                  year: formatYear(
+                                      data.first_air_date, data.last_air_date),
+                                  totalEpisodes: data.number_of_episodes),
                               const SizedBox(height: 10),
                               ButtonDetailMovieWidget(
                                   trailers: data.videos.results),
@@ -142,17 +146,20 @@ class _DetailMovieScreen extends State<DetailMovieScreen> {
                                     CastDetailMovieWidget(
                                         movieId: getMovieId,
                                         casts: state.castsTvSeries,
-                                        language: data.spoken_languages),
+                                        language: data.spoken_languages,
+                                        isTvSeries: getIsTvSeries),
                                     const SizedBox(height: 10.0),
                                     ReviewsDetailMovieWidget(
                                         movieId: getMovieId,
-                                        reviews: data.reviews.results),
+                                        reviews: data.reviews.results,
+                                        isTvSeries: getIsTvSeries),
                                     const SizedBox(height: 14.0),
                                     SeasonDetailMovieWidget(
                                         seasons: data.seasons),
                                     ListMovieWidget(
-                                        destinationRoute:
-                                            SimilarRoute(movieId: getMovieId),
+                                        destinationRoute: SimilarRoute(
+                                            movieId: getMovieId,
+                                            isTvSeries: getIsTvSeries),
                                         data: data.similar.results
                                             as List<dynamic>,
                                         isTvSeries: getIsTvSeries,

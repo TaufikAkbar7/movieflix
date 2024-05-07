@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movie_app/presentation/constants/app_constants.dart';
 
 class ContentCastWidget extends StatelessWidget {
   final List<Map<String, String>> data;
@@ -20,8 +21,8 @@ class ContentCastWidget extends StatelessWidget {
             CircleAvatar(
               radius: 50.0,
               backgroundImage: NetworkImage(data[index]['image'] != ''
-                  ? "https://image.tmdb.org/t/p/w154/${data[index]['image']}"
-                  : "https://www.gravatar.com/avatar/3b3be63a4c2a439b013787725dfce802?d=identicon"),
+                  ? "${ImageConstant.tmbdImageCard}/${data[index]['image']}"
+                  : ImageConstant.defaultImage),
               backgroundColor: Colors.transparent,
             ),
             const SizedBox(height: 2.0),

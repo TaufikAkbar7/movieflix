@@ -29,6 +29,7 @@ abstract class _$AppRouter extends RootStackRouter {
           key: args.key,
           movieId: args.movieId,
           casts: args.casts,
+          isTvSeries: args.isTvSeries,
         ),
       );
     },
@@ -68,6 +69,7 @@ abstract class _$AppRouter extends RootStackRouter {
         child: ReviewScreen(
           key: args.key,
           movieId: args.movieId,
+          isTvSeries: args.isTvSeries,
         ),
       );
     },
@@ -84,6 +86,7 @@ abstract class _$AppRouter extends RootStackRouter {
         child: SimilarScreen(
           key: args.key,
           movieId: args.movieId,
+          isTvSeries: args.isTvSeries,
         ),
       );
     },
@@ -111,6 +114,7 @@ class CastRoute extends PageRouteInfo<CastRouteArgs> {
     Key? key,
     required int movieId,
     required List<Map<String, String>> casts,
+    required bool isTvSeries,
     List<PageRouteInfo>? children,
   }) : super(
           CastRoute.name,
@@ -118,6 +122,7 @@ class CastRoute extends PageRouteInfo<CastRouteArgs> {
             key: key,
             movieId: movieId,
             casts: casts,
+            isTvSeries: isTvSeries,
           ),
           initialChildren: children,
         );
@@ -132,6 +137,7 @@ class CastRouteArgs {
     this.key,
     required this.movieId,
     required this.casts,
+    required this.isTvSeries,
   });
 
   final Key? key;
@@ -140,9 +146,11 @@ class CastRouteArgs {
 
   final List<Map<String, String>> casts;
 
+  final bool isTvSeries;
+
   @override
   String toString() {
-    return 'CastRouteArgs{key: $key, movieId: $movieId, casts: $casts}';
+    return 'CastRouteArgs{key: $key, movieId: $movieId, casts: $casts, isTvSeries: $isTvSeries}';
   }
 }
 
@@ -237,12 +245,14 @@ class ReviewRoute extends PageRouteInfo<ReviewRouteArgs> {
   ReviewRoute({
     Key? key,
     required int movieId,
+    required bool isTvSeries,
     List<PageRouteInfo>? children,
   }) : super(
           ReviewRoute.name,
           args: ReviewRouteArgs(
             key: key,
             movieId: movieId,
+            isTvSeries: isTvSeries,
           ),
           initialChildren: children,
         );
@@ -256,15 +266,18 @@ class ReviewRouteArgs {
   const ReviewRouteArgs({
     this.key,
     required this.movieId,
+    required this.isTvSeries,
   });
 
   final Key? key;
 
   final int movieId;
 
+  final bool isTvSeries;
+
   @override
   String toString() {
-    return 'ReviewRouteArgs{key: $key, movieId: $movieId}';
+    return 'ReviewRouteArgs{key: $key, movieId: $movieId, isTvSeries: $isTvSeries}';
   }
 }
 
@@ -288,12 +301,14 @@ class SimilarRoute extends PageRouteInfo<SimilarRouteArgs> {
   SimilarRoute({
     Key? key,
     required int movieId,
+    required bool isTvSeries,
     List<PageRouteInfo>? children,
   }) : super(
           SimilarRoute.name,
           args: SimilarRouteArgs(
             key: key,
             movieId: movieId,
+            isTvSeries: isTvSeries,
           ),
           initialChildren: children,
         );
@@ -308,14 +323,17 @@ class SimilarRouteArgs {
   const SimilarRouteArgs({
     this.key,
     required this.movieId,
+    required this.isTvSeries,
   });
 
   final Key? key;
 
   final int movieId;
 
+  final bool isTvSeries;
+
   @override
   String toString() {
-    return 'SimilarRouteArgs{key: $key, movieId: $movieId}';
+    return 'SimilarRouteArgs{key: $key, movieId: $movieId, isTvSeries: $isTvSeries}';
   }
 }

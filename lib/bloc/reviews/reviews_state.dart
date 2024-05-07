@@ -1,7 +1,16 @@
 part of 'reviews_bloc.dart';
 
 abstract class ReviewsState extends Equatable {
-  const ReviewsState();
+  final bool hasReachedMax;
+  final List<ReviewsModel> reviews;
+  final Status status;
+  final String errorMessage;
+
+  const ReviewsState(
+      {this.status = Status.loading,
+      this.reviews = const [],
+      this.errorMessage = '',
+      this.hasReachedMax = false});
 
   @override
   List<Object> get props => [];
@@ -9,20 +18,28 @@ abstract class ReviewsState extends Equatable {
 
 class ReviewsInitial extends ReviewsState {}
 
-class ReviewsLoading extends ReviewsState {}
-
 class ReviewsError extends ReviewsState {
   final String e;
-  const ReviewsError(this.e);
+  const ReviewsError(this.e) : super(status: Status.error, errorMessage: e);
 
   @override
   List<Object> get props => [e];
 }
 
 class ReviewsSuccess extends ReviewsState {
-  final List<ReviewsModel> reviews;
-  const ReviewsSuccess({required this.reviews});
+  final List<ReviewsModel> reviewsState;
+  const ReviewsSuccess({required this.reviewsState})
+      : super(reviews: reviewsState, status: Status.success);
 
   @override
   List<Object> get props => [reviews];
+}
+
+class SimilarHasReachMax extends ReviewsState {
+  final bool isReachMax;
+  const SimilarHasReachMax({required this.isReachMax})
+      : super(hasReachedMax: isReachMax, status: Status.success);
+
+  @override
+  List<Object> get props => [isReachMax];
 }
