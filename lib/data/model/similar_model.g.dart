@@ -8,7 +8,8 @@ part of 'similar_model.dart';
 
 SimilarModel _$SimilarModelFromJson(Map<String, dynamic> json) => SimilarModel(
       id: (json['id'] as num).toInt(),
-      title: json['title'] as String,
+      title: json['title'] as String?,
+      name: json['name'] as String?,
       poster_path: json['poster_path'] as String?,
     );
 
@@ -16,5 +17,6 @@ Map<String, dynamic> _$SimilarModelToJson(SimilarModel instance) =>
     <String, dynamic>{
       'id': instance.id,
       'title': instance.title,
+      'name': instance.name,
       'poster_path': instance.poster_path,
     };

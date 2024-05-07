@@ -28,16 +28,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   actions: [
-      //     IconButton(
-      //         onPressed: () {
-      //           _movieBloc.add(GetPopularMovies());
-      //           _tvSeriesBloc.add(GetPopularTvSeries());
-      //         },
-      //         icon: const Icon(Icons.refresh))
-      //   ],
-      // ),
+      backgroundColor: const Color(0xFF141A26),
       body: MultiBlocProvider(
         providers: [
           BlocProvider<MovieBloc>(
@@ -47,55 +38,41 @@ class _HomeScreenState extends State<HomeScreen> {
             create: (context) => _tvSeriesBloc,
           ),
         ],
-        child: Scaffold(
-            backgroundColor: const Color(0xFF141A26),
-            body: SingleChildScrollView(
-              child: Column(
-                children: [
-                  const CarouselWidget(),
-                  Container(
-                    padding: const EdgeInsets.only(
-                        left: 16.0, right: 16.0, top: 16.0, bottom: 16.0),
-                    child: Column(
-                      children: [
-                        BlocBuilder<MovieBloc, MovieState>(
-                          builder: (context, state) {
-                            return ListMovieWidget(
-                              destinationRoute: const HomeRoute(),
-                              data: state.movieList,
-                              title: 'Popular Movies',
-                            );
-                          },
-                        ),
-                        BlocBuilder<TvSeriesBloc, TvSeriesState>(
-                          builder: (context, state) {
-                            return ListMovieWidget(
-                              destinationRoute: const HomeRoute(),
-                              data: state.tvSeriesList,
-                              title: 'Popular Tv Series',
-                              isTvSeries: true,
-                            );
-                          },
-                        ),
-                      ],
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              const CarouselWidget(),
+              Container(
+                padding: const EdgeInsets.only(
+                    left: 16.0, right: 16.0, top: 16.0, bottom: 16.0),
+                child: Column(
+                  children: [
+                    BlocBuilder<MovieBloc, MovieState>(
+                      builder: (context, state) {
+                        return ListMovieWidget(
+                          destinationRoute: const HomeRoute(),
+                          data: state.movieList,
+                          title: 'Popular Movies',
+                        );
+                      },
                     ),
-                  ),
-                ],
+                    BlocBuilder<TvSeriesBloc, TvSeriesState>(
+                      builder: (context, state) {
+                        return ListMovieWidget(
+                          destinationRoute: const HomeRoute(),
+                          data: state.tvSeriesList,
+                          title: 'Popular Tv Series',
+                          isTvSeries: true,
+                        );
+                      },
+                    ),
+                  ],
+                ),
               ),
-            )),
+            ],
+          ),
+        ),
       ),
     );
-    // return Scaffold(
-    //   appBar: AppBar(
-    //     title: Text('wkwkw'),
-    //   ),
-    //   body: Container(
-    //     child: OutlinedButton(
-    //       child: Text('Click'),
-    //       onPressed: () =>
-    //           HomeBloc(homeRepos: HomeRepository())..add(GetPopularTvSeries()),
-    //     ),
-    //   ),
-    // );
   }
 }

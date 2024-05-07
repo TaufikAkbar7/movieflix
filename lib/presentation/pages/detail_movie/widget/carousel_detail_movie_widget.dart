@@ -4,9 +4,15 @@ import 'package:flutter/material.dart';
 class CarouselDetailMovieWidget extends StatefulWidget {
   final List<String> poster_images;
   final double rating;
+  String year;
+  int totalEpisodes;
 
-  const CarouselDetailMovieWidget(
-      {super.key, required this.poster_images, required this.rating});
+  CarouselDetailMovieWidget(
+      {super.key,
+      required this.poster_images,
+      required this.rating,
+      this.year = '2023',
+      this.totalEpisodes = 1});
 
   @override
   State<CarouselDetailMovieWidget> createState() =>
@@ -26,6 +32,8 @@ class _CarouselDetailMovieWidget extends State<CarouselDetailMovieWidget> {
 
   double get getRating => widget.rating;
   List<String> get getPoster => widget.poster_images;
+  String get getYear => widget.year;
+  int get getTotalEpisodes => widget.totalEpisodes;
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +60,7 @@ class _CarouselDetailMovieWidget extends State<CarouselDetailMovieWidget> {
                   height: double.infinity,
                 ),
                 Positioned(
-                  bottom: 210,
+                  bottom: 190,
                   child: Container(
                     margin: const EdgeInsets.only(left: 18.0),
                     decoration: BoxDecoration(
@@ -82,8 +90,8 @@ class _CarouselDetailMovieWidget extends State<CarouselDetailMovieWidget> {
                 Container(
                     padding: const EdgeInsets.symmetric(
                         vertical: 24.0, horizontal: 10.0),
-                    child: Container(
-                      width: 160,
+                    child: FittedBox(
+                        child: Container(
                       padding: const EdgeInsets.symmetric(
                           vertical: 8.0, horizontal: 14.0),
                       decoration: BoxDecoration(
@@ -115,23 +123,23 @@ class _CarouselDetailMovieWidget extends State<CarouselDetailMovieWidget> {
                           const Text('|',
                               style: TextStyle(color: Colors.white)),
                           const SizedBox(width: 5),
-                          const Text(
-                            '2023',
-                            style:
-                                TextStyle(color: Colors.white, fontSize: 14.0),
+                          Text(
+                            getYear,
+                            style: const TextStyle(
+                                color: Colors.white, fontSize: 14.0),
                           ),
                           const SizedBox(width: 5),
                           const Text('|',
                               style: TextStyle(color: Colors.white)),
                           const SizedBox(width: 5),
-                          const Text(
-                            '13+',
-                            style:
-                                TextStyle(color: Colors.white, fontSize: 14.0),
-                          )
+                          Text(
+                            '$getTotalEpisodes eps',
+                            style: const TextStyle(
+                                color: Colors.white, fontSize: 14.0),
+                          ),
                         ],
                       ),
-                    ))
+                    )))
               ],
             );
           }),

@@ -78,7 +78,7 @@ class MovieService {
     final dio = DioClient().dio;
     try {
       final response = await dio.get(
-          '/tv/$tvSeriesId?language=en-US&append_to_response=casts,similar,release_dates,reviews,videos');
+          '/tv/$tvSeriesId?language=en-US&append_to_response=credits,similar,reviews,videos');
       return response.data;
     } on DioException catch (err) {
       debugPrint('debug: ${err.requestOptions}');

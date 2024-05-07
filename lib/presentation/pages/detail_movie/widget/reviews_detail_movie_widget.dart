@@ -16,7 +16,6 @@ class ReviewsDetailMovieWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     if (reviews.isNotEmpty) {
       return Container(
-        padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 12.0),
         child: Column(
           children: [
             Row(

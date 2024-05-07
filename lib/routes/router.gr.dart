@@ -15,6 +15,12 @@ abstract class _$AppRouter extends RootStackRouter {
 
   @override
   final Map<String, PageFactory> pagesMap = {
+    BookmarkRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const BookmarkScreen(),
+      );
+    },
     CastRoute.name: (routeData) {
       final args = routeData.argsAs<CastRouteArgs>();
       return AutoRoutePage<dynamic>(
@@ -24,6 +30,12 @@ abstract class _$AppRouter extends RootStackRouter {
           movieId: args.movieId,
           casts: args.casts,
         ),
+      );
+    },
+    DetailMovieNavigationRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const DetailMovieNavigationScreen(),
       );
     },
     DetailMovieRoute.name: (routeData) {
@@ -43,10 +55,10 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const HomeScreen(),
       );
     },
-    LoginRoute.name: (routeData) {
+    MainRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const LoginScreen(),
+        child: const MainScreen(),
       );
     },
     ReviewRoute.name: (routeData) {
@@ -57,6 +69,12 @@ abstract class _$AppRouter extends RootStackRouter {
           key: args.key,
           movieId: args.movieId,
         ),
+      );
+    },
+    SearchRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const SearchScreen(),
       );
     },
     SimilarRoute.name: (routeData) {
@@ -70,6 +88,20 @@ abstract class _$AppRouter extends RootStackRouter {
       );
     },
   };
+}
+
+/// generated route for
+/// [BookmarkScreen]
+class BookmarkRoute extends PageRouteInfo<void> {
+  const BookmarkRoute({List<PageRouteInfo>? children})
+      : super(
+          BookmarkRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'BookmarkRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
 }
 
 /// generated route for
@@ -112,6 +144,20 @@ class CastRouteArgs {
   String toString() {
     return 'CastRouteArgs{key: $key, movieId: $movieId, casts: $casts}';
   }
+}
+
+/// generated route for
+/// [DetailMovieNavigationScreen]
+class DetailMovieNavigationRoute extends PageRouteInfo<void> {
+  const DetailMovieNavigationRoute({List<PageRouteInfo>? children})
+      : super(
+          DetailMovieNavigationRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'DetailMovieNavigationRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
 }
 
 /// generated route for
@@ -172,15 +218,15 @@ class HomeRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [LoginScreen]
-class LoginRoute extends PageRouteInfo<void> {
-  const LoginRoute({List<PageRouteInfo>? children})
+/// [MainScreen]
+class MainRoute extends PageRouteInfo<void> {
+  const MainRoute({List<PageRouteInfo>? children})
       : super(
-          LoginRoute.name,
+          MainRoute.name,
           initialChildren: children,
         );
 
-  static const String name = 'LoginRoute';
+  static const String name = 'MainRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }
@@ -220,6 +266,20 @@ class ReviewRouteArgs {
   String toString() {
     return 'ReviewRouteArgs{key: $key, movieId: $movieId}';
   }
+}
+
+/// generated route for
+/// [SearchScreen]
+class SearchRoute extends PageRouteInfo<void> {
+  const SearchRoute({List<PageRouteInfo>? children})
+      : super(
+          SearchRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'SearchRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
 }
 
 /// generated route for

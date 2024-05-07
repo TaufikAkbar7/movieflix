@@ -30,11 +30,11 @@ class _AppReviewWidget extends State<AppReviewWidget> {
         height: 20,
       ),
       scrollDirection: Axis.vertical,
+      padding: const EdgeInsets.symmetric(vertical: 5),
       itemBuilder: (context, index) {
         if (getReviews.isNotEmpty) {
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               RichText(
                   text: TextSpan(children: [

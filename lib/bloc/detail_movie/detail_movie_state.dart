@@ -39,3 +39,24 @@ class DetailMovieDataState extends DetailMovieState {
   @override
   List<Object> get props => [detailMovie, castsMovie];
 }
+
+class DetailTvSeriesSuccess extends DetailMovieState {
+  final DetailTvSeriesModel detailTvSeries;
+
+  const DetailTvSeriesSuccess({required this.detailTvSeries});
+
+  List<Map<String, String>> get castsTvSeries {
+    final cast = detailTvSeries.credits.cast.map((e) => {
+          'name': e.name,
+          'job': e.known_for_department,
+          'image': e.profile_path ?? ''
+        });
+    final crew = detailTvSeries.credits.crew.map(
+        (e) => {'name': e.name, 'job': e.job, 'image': e.profile_path ?? ''});
+
+    return {...cast, ...crew}.toList();
+  }
+
+  @override
+  List<Object> get props => [detailTvSeries, castsTvSeries];
+}

@@ -20,7 +20,8 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
             useMaterial3: true,
-            textTheme: GoogleFonts.robotoTextTheme()),
+            textTheme: GoogleFonts.robotoTextTheme(),
+            canvasColor: Colors.transparent),
         routerConfig: _appRouter.config());
   }
 }
