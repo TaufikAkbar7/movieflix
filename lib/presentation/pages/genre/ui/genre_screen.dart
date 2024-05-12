@@ -1,24 +1,24 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movie_app/bloc/similar/similar_bloc.dart';
+import 'package:movie_app/bloc/search/search_bloc.dart';
 import 'package:movie_app/presentation/constants/app_constants.dart';
 import 'package:movie_app/presentation/widgets/widget.dart';
 
 @RoutePage()
-class SimilarScreen extends StatefulWidget {
-  final int movieId;
-  final bool isTvSeries;
-  const SimilarScreen(
-      {super.key, required this.movieId, required this.isTvSeries});
+class GenreScreen extends StatefulWidget {
+  final int genreId;
+  final String genreName;
+  const GenreScreen(
+      {super.key, required this.genreId, required this.genreName});
 
   @override
-  State<SimilarScreen> createState() => _SimilarScreen();
+  State<GenreScreen> createState() => _GenreScreen();
 }
 
-class _SimilarScreen extends State<SimilarScreen> {
+class _GenreScreen extends State<GenreScreen> {
   final _scrollController = ScrollController();
-  final SimilarBloc _similarBloc = SimilarBloc();
+  final SearchBloc _searchBloc = SearchBloc();
   int _currentPage = 1;
 
   @override
@@ -37,8 +37,8 @@ class _SimilarScreen extends State<SimilarScreen> {
   }
 
   void _fetchData({int page = 1}) {
-    _similarBloc.add(GetDetailMovieSimilar(
-        movieId: widget.movieId, currentPage: page, isTvSeries: getIsTvSeries));
+    _searchBloc.add(
+        GetMovieByGenre(currentPage: _currentPage, genreId: widget.genreId));
   }
 
   void _onScroll() {
@@ -50,31 +50,29 @@ class _SimilarScreen extends State<SimilarScreen> {
     }
   }
 
-  bool get getIsTvSeries => widget.isTvSeries;
-
   @override
   Widget build(context) {
     return AppScaffoldWidget(
       isUsingAppBar: true,
-      appBarTitle: 'Similar Movie',
+      appBarTitle: widget.genreName,
       body: BlocProvider(
-        create: (context) => _similarBloc,
+        create: (context) => _searchBloc,
         child: AppContainerWidget(
           onRefresh: () async => _fetchData(),
           child:
-              BlocBuilder<SimilarBloc, SimilarState>(builder: (context, state) {
+              BlocBuilder<SearchBloc, SearchState>(builder: (context, state) {
             switch (state.status) {
               case Status.loading:
                 return const AppLoadingWidget();
               case Status.success:
-                final data = state.similarMovie;
+                final data = state.searchMovie;
                 return Padding(
                     padding: const EdgeInsets.symmetric(
                         horizontal: 12.0, vertical: 8.0),
                     child: AppGridViewWidget(
                         data: data,
                         scrollController: _scrollController,
-                        isTvSeries: getIsTvSeries));
+                        isTvSeries: false));
               case Status.error:
                 return AppErrorMessageWidget(errorMessage: state.errorMessage);
               default:

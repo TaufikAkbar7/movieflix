@@ -78,7 +78,7 @@ class _CarouselDetailMovieWidget extends State<CarouselDetailMovieWidget> {
                           color: Colors.white,
                           size: 36.0,
                         ),
-                        onPressed: () => context.router.back()),
+                        onPressed: () => context.router.navigateNamed('/home')),
                   ),
                 ),
                 Positioned(

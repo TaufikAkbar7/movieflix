@@ -50,6 +50,17 @@ abstract class _$AppRouter extends RootStackRouter {
         ),
       );
     },
+    GenreRoute.name: (routeData) {
+      final args = routeData.argsAs<GenreRouteArgs>();
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: GenreScreen(
+          key: args.key,
+          genreId: args.genreId,
+          genreName: args.genreName,
+        ),
+      );
+    },
     HomeRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -62,6 +73,16 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const MainScreen(),
       );
     },
+    PopularRoute.name: (routeData) {
+      final args = routeData.argsAs<PopularRouteArgs>();
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: PopularScreen(
+          key: args.key,
+          isTvSeries: args.isTvSeries,
+        ),
+      );
+    },
     ReviewRoute.name: (routeData) {
       final args = routeData.argsAs<ReviewRouteArgs>();
       return AutoRoutePage<dynamic>(
@@ -71,6 +92,12 @@ abstract class _$AppRouter extends RootStackRouter {
           movieId: args.movieId,
           isTvSeries: args.isTvSeries,
         ),
+      );
+    },
+    SearchNavigationRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const SearchNavigationScreen(),
       );
     },
     SearchRoute.name: (routeData) {
@@ -212,6 +239,48 @@ class DetailMovieRouteArgs {
 }
 
 /// generated route for
+/// [GenreScreen]
+class GenreRoute extends PageRouteInfo<GenreRouteArgs> {
+  GenreRoute({
+    Key? key,
+    required int genreId,
+    required String genreName,
+    List<PageRouteInfo>? children,
+  }) : super(
+          GenreRoute.name,
+          args: GenreRouteArgs(
+            key: key,
+            genreId: genreId,
+            genreName: genreName,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'GenreRoute';
+
+  static const PageInfo<GenreRouteArgs> page = PageInfo<GenreRouteArgs>(name);
+}
+
+class GenreRouteArgs {
+  const GenreRouteArgs({
+    this.key,
+    required this.genreId,
+    required this.genreName,
+  });
+
+  final Key? key;
+
+  final int genreId;
+
+  final String genreName;
+
+  @override
+  String toString() {
+    return 'GenreRouteArgs{key: $key, genreId: $genreId, genreName: $genreName}';
+  }
+}
+
+/// generated route for
 /// [HomeScreen]
 class HomeRoute extends PageRouteInfo<void> {
   const HomeRoute({List<PageRouteInfo>? children})
@@ -237,6 +306,44 @@ class MainRoute extends PageRouteInfo<void> {
   static const String name = 'MainRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [PopularScreen]
+class PopularRoute extends PageRouteInfo<PopularRouteArgs> {
+  PopularRoute({
+    Key? key,
+    required bool isTvSeries,
+    List<PageRouteInfo>? children,
+  }) : super(
+          PopularRoute.name,
+          args: PopularRouteArgs(
+            key: key,
+            isTvSeries: isTvSeries,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'PopularRoute';
+
+  static const PageInfo<PopularRouteArgs> page =
+      PageInfo<PopularRouteArgs>(name);
+}
+
+class PopularRouteArgs {
+  const PopularRouteArgs({
+    this.key,
+    required this.isTvSeries,
+  });
+
+  final Key? key;
+
+  final bool isTvSeries;
+
+  @override
+  String toString() {
+    return 'PopularRouteArgs{key: $key, isTvSeries: $isTvSeries}';
+  }
 }
 
 /// generated route for
@@ -279,6 +386,20 @@ class ReviewRouteArgs {
   String toString() {
     return 'ReviewRouteArgs{key: $key, movieId: $movieId, isTvSeries: $isTvSeries}';
   }
+}
+
+/// generated route for
+/// [SearchNavigationScreen]
+class SearchNavigationRoute extends PageRouteInfo<void> {
+  const SearchNavigationRoute({List<PageRouteInfo>? children})
+      : super(
+          SearchNavigationRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'SearchNavigationRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
 }
 
 /// generated route for

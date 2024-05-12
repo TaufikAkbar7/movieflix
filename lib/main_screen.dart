@@ -31,7 +31,7 @@ class MainScreen extends StatelessWidget {
               },
               showSelectedLabels: false,
               showUnselectedLabels: false,
-              iconSize: 28,
+              iconSize: 24,
               items: const [
                 BottomNavigationBarItem(icon: Icon(Icons.home), label: ''),
                 BottomNavigationBarItem(icon: Icon(Icons.search), label: ''),

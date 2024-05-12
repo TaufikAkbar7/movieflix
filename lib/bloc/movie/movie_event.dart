@@ -10,3 +10,8 @@ sealed class MovieEvent extends Equatable {
 class GetPopularMovies extends MovieEvent {}
 
 class GetUpcomingMovies extends MovieEvent {}
+
+class GetPopularMoviesPagination extends MovieEvent {
+  int page;
+  GetPopularMoviesPagination({this.page = 1});
+}
