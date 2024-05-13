@@ -1,20 +1,56 @@
+import 'dart:convert';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:movie_app/presentation/constants/app_constants.dart';
 import 'package:movie_app/routes/router.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ListMovieWidget<T> extends StatelessWidget {
   final List<dynamic> data;
   final String title;
   final bool isTvSeries;
   final PageRouteInfo<dynamic> destinationRoute;
+  Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
 
-  const ListMovieWidget(
+  ListMovieWidget(
       {super.key,
       required this.data,
       required this.title,
       this.isTvSeries = false,
       required this.destinationRoute});
+
+  Future<void> _bookmarkMovie(dynamic data) async {
+    final SharedPreferences prefs = await _prefs;
+    final getBookmark = prefs.getString('bookmark') ?? '';
+
+    List<dynamic> decode = jsonDecode(getBookmark);
+    if (decode.isNotEmpty) {
+      Map<String, dynamic> mappingMovie = {
+        'title': isTvSeries ? data.name : data.title,
+        'id': data.id,
+        'poster_path': data.poster_path,
+        'is_tv_series': isTvSeries
+      };
+      decode.add(mappingMovie);
+      // filter data by id
+      // to get unique data
+      List distinctMovie = decode.toSet().toList();
+      String encode = jsonEncode(distinctMovie);
+      prefs.setString('bookmark', encode);
+    } else {
+      Map<String, dynamic> mappingMovie = {
+        'title': isTvSeries ? data.name : data.title,
+        'id': data.id,
+        'poster_path': data.poster_path,
+        'is_tv_series': isTvSeries
+      };
+      List<dynamic> combineResult = [];
+      combineResult.add(mappingMovie);
+      String encode = jsonEncode(combineResult);
+      prefs.setString('bookmark', encode);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -98,7 +134,8 @@ class ListMovieWidget<T> extends StatelessWidget {
                                     child: IconButton(
                                       icon: const Icon(Icons.bookmark_add,
                                           size: 26.0, color: Colors.white),
-                                      onPressed: () => {},
+                                      onPressed: () =>
+                                          _bookmarkMovie(data[index]),
                                     ),
                                   ),
                                 )),
