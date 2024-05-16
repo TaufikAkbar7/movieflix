@@ -13,7 +13,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
 
   SearchBloc() : super(SearchInitial()) {
     on<GetMovieBySearch>((event, emit) async {
-      if (state.hasReachedMax) return;
+      // if (state.hasReachedMax) return;
       final getCurrentMovieState = state.searchMovie;
 
       try {

@@ -23,14 +23,12 @@ class AppRouter extends _$AppRouter {
         AutoRoute(page: MainRoute.page, initial: true, children: [
           AutoRoute(page: HomeRoute.page, path: 'home'),
           AutoRoute(
-              page: SearchNavigationRoute.page,
-              path: 'search',
-              children: [
-                AutoRoute(page: SearchRoute.page, initial: true),
-                AutoRoute(page: GenreRoute.page, path: 'genre')
-              ]),
+            page: SearchRoute.page,
+            path: 'search',
+          ),
           AutoRoute(page: BookmarkRoute.page, path: 'bookmark')
         ]),
+        AutoRoute(page: GenreRoute.page, path: '/genre'),
         AutoRoute(
             page: DetailMovieNavigationRoute.page,
             path: '/detail',

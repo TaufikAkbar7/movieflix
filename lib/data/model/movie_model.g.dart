@@ -9,7 +9,9 @@ part of 'movie_model.dart';
 MovieModel _$MovieModelFromJson(Map<String, dynamic> json) => MovieModel(
       id: (json['id'] as num).toInt(),
       title: json['title'] as String,
-      poster_path: json['poster_path'] as String,
+      poster_path: json['poster_path'] as String?,
+      release_date: json['release_date'] as String,
+      vote_average: (json['vote_average'] as num).toDouble(),
     );
 
 Map<String, dynamic> _$MovieModelToJson(MovieModel instance) =>
@@ -17,4 +19,6 @@ Map<String, dynamic> _$MovieModelToJson(MovieModel instance) =>
       'id': instance.id,
       'title': instance.title,
       'poster_path': instance.poster_path,
+      'release_date': instance.release_date,
+      'vote_average': instance.vote_average,
     };

@@ -13,7 +13,7 @@ part 'detail_movie_model.g.dart';
 class DetailMovieModel {
   final int id;
   final String title;
-  final String backdrop_path;
+  final String? backdrop_path;
   final String poster_path;
   final double vote_average;
   final String overview;

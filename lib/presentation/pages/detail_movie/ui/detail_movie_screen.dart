@@ -72,7 +72,7 @@ class _DetailMovieScreen extends State<DetailMovieScreen> {
                           Column(
                             children: [
                               CarouselDetailMovieWidget(poster_images: [
-                                data.backdrop_path,
+                                data.backdrop_path ?? '',
                                 data.poster_path
                               ], rating: data.vote_average),
                               const SizedBox(height: 10),

@@ -10,7 +10,7 @@ DetailMovieModel _$DetailMovieModelFromJson(Map<String, dynamic> json) =>
     DetailMovieModel(
       id: (json['id'] as num).toInt(),
       title: json['title'] as String,
-      backdrop_path: json['backdrop_path'] as String,
+      backdrop_path: json['backdrop_path'] as String?,
       poster_path: json['poster_path'] as String,
       vote_average: (json['vote_average'] as num).toDouble(),
       overview: json['overview'] as String,
